@@ -70,13 +70,13 @@ class KrakenWebsocketAPI:
                     'params': {
                         'channel': 'trade',
                         'symbol': self.pairs,
-                        'snapshot': True,
+                        'snapshot': False,
                     },
                 }
             )
         )
 
-        for _pair in self.pairs:
+        for _ in self.pairs:
             _ = self._ws_client.recv()
             _ = self._ws_client.recv()
 
@@ -86,10 +86,10 @@ def datestr2milliseconds(iso_time: str) -> int:
     Convert ISO format datetime string to Unix milliseconds timestamp.
 
     Args:
-    iso_time (str): ISO format datetime string (e.g. '2023-09-25T07:49:37.708706Z')
+        iso_time (str): ISO format datetime string (e.g. '2023-09-25T07:49:37.708706Z')
 
     Returns:
-    int: Unix timestamp in milliseconds
+        int: Unix timestamp in milliseconds
     """
     from datetime import datetime
 
