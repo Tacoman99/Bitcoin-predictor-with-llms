@@ -6,18 +6,12 @@ RUN apt-get update && apt-get install -y \
     gcc \
     build-essential \
     wget \
-    librdkafka-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install ta-lib
-RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && \
-    tar -xzf ta-lib-0.4.0-src.tar.gz && \
-    cd ta-lib/ && \
-    ./configure --prefix=/usr --build=aarch64-unknown-linux-gnu && \
-    make && \
-    make install && \
-    cd .. && \
-    rm -rf ta-lib*
+RUN wget https://github.com/ta-lib/ta-lib/releases/download/v0.6.4/ta-lib_0.6.4_amd64.deb && \
+    dpkg -i ta-lib_0.6.4_amd64.deb && \
+    rm ta-lib_0.6.4_amd64.deb
 
 # Install the project into `/app`
 WORKDIR /app
